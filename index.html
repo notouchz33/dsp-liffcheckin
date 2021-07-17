@@ -165,6 +165,8 @@
         }
 
         function clock() {// We create a new Date object and assign it to a variable called "time".\]
+            var today = new Date();
+        today.toLocaleString('th-TH', { timeZone: 'Asia/Bangkok' });
 
             var hours = today.getHours(),
 
