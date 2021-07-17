@@ -51,7 +51,6 @@
                 onclick="getLocation()">Check-In</button></div>
         <div id="chkOut"><button type="button" class="btn btn-danger btn-lg btn-block"
                 onclick="getLocationOut()">Check-Out</button></div>
-
         <p id="demo"></p>
     </center>
 
@@ -63,7 +62,6 @@
         const xurl = "https://script.google.com/macros/s/AKfycbwDPAOewNLcNYXoQnmUTQ7z0gyGyzMC1FaW4BRPWlYhSeu1MULDor2FjK53pVeoqi1mcw/exec";
         var today = new Date();
         today.toLocaleString('th-TH', { timeZone: 'Asia/Bangkok' })
-
 
         function checks() {
 
@@ -131,12 +129,15 @@
                         showDenyButton: true,
                         showCancelButton: false,
                         allowOutsideClick: false
-                    }).then((result) => {
-                        /* Read more about isConfirmed, isDenied below */
-                        if (result.isConfirmed) {
-                            liff.closeWindow();
+                    }).then(
+                        function () { },
+                        function (dismiss) {
+                            if (dismiss === 'timer') {
+                                liff.closeWindow();
+
+                            }
                         }
-                    });
+                    )
                 }
             });
         }
@@ -173,7 +174,7 @@
                     if (this.readyState == 4 && this.status == 200) {
                         var jsonResponse = JSON.parse(this.responseText);
                     }
-                    
+
                     Swal.fire({
                         title: 'Good job!',
                         text: jsonResponse.desc,
@@ -181,12 +182,15 @@
                         showDenyButton: true,
                         showCancelButton: false,
                         allowOutsideClick: false
-                    }).then((result) => {
-                        /* Read more about isConfirmed, isDenied below */
-                        if (result.isConfirmed) {
-                            liff.closeWindow();
+                    }).then(
+                        function () { },
+                        function (dismiss) {
+                            if (dismiss === 'timer') {
+                                liff.closeWindow();
+
+                            }
                         }
-                    });
+                    )
                 }
             });
         }
