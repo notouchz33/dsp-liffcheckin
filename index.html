@@ -119,7 +119,9 @@
                 xmlhttp.onreadystatechange = function () {
                     if (this.readyState == 4 && this.status == 200) {
                         var jsonResponse = JSON.parse(this.responseText);
-                    }
+                    } else {
+           console.log("Error", xmlhttp.statusText);
+        }
                     alert(jsonResponse.desc);
                     liff.closeWindow();
                 }
