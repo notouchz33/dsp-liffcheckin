@@ -257,13 +257,13 @@
                     document.getElementById('loader').style.display = "none";
 
                     // alert(jsonResponse.desc);
-
                     Swal.fire({
                         title: 'Good job!',
                         text: jsonResponse.desc,
                         icon: 'success',
-                        showDenyButton: true,
+                        timer: 2000,
                         showCancelButton: false,
+                        showConfirmButton: false,
                         allowOutsideClick: false
                     }).then(
                         function () { },
@@ -320,8 +320,9 @@
                         title: 'Good job!',
                         text: jsonResponse.desc,
                         icon: 'success',
-                        showDenyButton: true,
+                        timer: 2000,
                         showCancelButton: false,
+                        showConfirmButton: false,
                         allowOutsideClick: false
                     }).then(
                         function () { },
