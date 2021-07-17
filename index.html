@@ -1,138 +1,204 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-    <title>ITDEV.win</title>
-  </head>
-  <body>
-    <center>
-    <h1>Check-In/Out Log</h1>
-<p>Click the button to check-in or check-out with your coordinates.</p>
-<div id="cin" class="invisible"><button type="button" class="btn btn-success" onclick="getLocation()">Check-In</button></div>
-<div id="cout" class="invisible"><button id="cout" type="button" class="btn btn-danger" onclick="getLocationOut()">Check-Out</button></div>
+    <title>DSP | Check In - Out</title>
+</head>
+<style>
+    svg {
+        height: 20vh;
+        width: 100%;
+        padding: 1rem;
+    }
 
-<p id="demo"></p>
-</center>
+    .clock {
+        font-size: 4em;
+    }
+</style>
 
-<script>
-window.onload = function() {
-  initializeLiff('1654370606-geWqlVLk');
-}
+<body>
+    <center class="p-3">
+        <svg preserveAspectRatio="xMidYMid meet" data-bbox="487.894 381.779 214.905 53.908"
+            viewBox="487.894 381.779 214.905 53.908" height="841.89" width="1190.55" xmlns="http://www.w3.org/2000/svg"
+            data-type="color" role="presentation" aria-hidden="true">
+            <g>
+                <path fill="#ED1C24" d="M627.603 382.053v53.151h-64.164v-53.151h64.164z" data-color="1"></path>
+                <path
+                    d="M558.078 420.326v-38.547h-10.639v37.091c0 6.296-5.31 6.091-5.31 6.091h-37.871a5.272 5.272 0 010-10.545h33.66v-10.728h-35.66c-6.726 0-14.364 7.166-14.364 16.002s7.638 15.997 14.364 15.997h40.433c15.701-1.818 15.387-15.361 15.387-15.361z"
+                    fill="#010101" data-color="2"></path>
+                <path
+                    d="M632.619 397.144v38.543h10.634v-37.09c0-6.296 5.31-6.091 5.31-6.091h37.871a5.273 5.273 0 010 10.545h-33.658v10.728h35.66c6.73 0 14.363-7.161 14.363-16 0-8.834-7.633-16-14.363-16h-40.434c-15.701 1.819-15.383 15.365-15.383 15.365z"
+                    fill="#010101" data-color="2"></path>
+                <path
+                    d="M579.917 392.78h47.972v-11.001h-49.973c-6.727.274-14.364 7.437-14.364 16.271 0 8.839 7.638 16.002 14.364 16.002h11.662v-.002h21.67a5.272 5.272 0 110 10.544h-48.665l-.296 11.024h50.666c7.027-.296 14.66-7.46 14.66-16.297 0-8.836-7.633-16-14.364-16h-24.75v.002h-8.582a5.272 5.272 0 110-10.543z"
+                    fill="#FFFFFF" data-color="3"></path>
+            </g>
+        </svg>
+        <h1>Check-In/Out Log</h1>
+        <div class="clock"></div>
 
-const xurl = "https://script.google.com/home/projects/14WwwR61FzHPzFaqDB-dlW9_EwP-Q-QC9elK2A6W7OwZFMJsldxLF5fGG/executions";
+        <div id="chkIn"><button type="button" class="btn btn-success"
+                onclick="getLocation()">Check-In</button></div>
+        <div id="chkOut"><button type="button" class="btn btn-danger"
+                onclick="getLocationOut()">Check-Out</button></div>
 
-function checks(){
+        <p id="demo"></p>
+    </center>
 
-var today = new Date();
-today.toLocaleString('th-TH', { timeZone: 'Asia/Bangkok' })
-var hh = today.getHours();
-var mm = today.getMinutes(); 
+    <script>
+        window.onload = function () {
+            initializeLiff('1654370606-geWqlVLk');
+        }
 
-        if(hh <= 13){
-          document.getElementById("cin").classList.remove('invisible');
-        }else if(hh >= 17){
-          document.getElementById("cout").classList.remove('invisible');
-            }else{
-alert("ไม่สามารถเช็คอิน/เอาท์ได้ในช่วงเวลา 13.00-17.00 "+hh+":"+mm);
-liff.closeWindow();  
+        const xurl = "https://script.google.com/home/projects/14WwwR61FzHPzFaqDB-dlW9_EwP-Q-QC9elK2A6W7OwZFMJsldxLF5fGG/executions";
+        var today = new Date();
+        today.toLocaleString('th-TH', { timeZone: 'Asia/Bangkok' })
+
+
+        function checks() {
+
+            var hh = today.getHours();
+            var mm = today.getMinutes();
+
+            if (hh <= 13) {
+                document.getElementById("chkIn").classList.remove('invisible');
+            } else if (hh >= 17) {
+                document.getElementById("chkOut").classList.remove('invisible');
+            } else {
+                alert("ไม่สามารถเช็คอิน/เอาท์ได้ในช่วงเวลา 13.00-17.00 " + hh + ":" + mm);
+                liff.closeWindow();
             }
-}
-
-
-function initializeLiff(myLiffId) {
-    liff
-        .init({
-            liffId: myLiffId
-        })
-        .then(() => {
-            checks();
-        })
-        .catch((err) => {
-        });
-}
-
-var x = document.getElementById("demo");
-
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
-
-function showPosition(position) {
-
-     liff.getProfile().then(function(profile) {
-            var uid = profile.userId;
-            var uname = profile.displayName;
-        var xos = liff.getOS();
-  x.innerHTML = "Lat: " + position.coords.latitude + 
-  "<br>Long: " + position.coords.longitude+ 
-  "<br>userId: " + uid+ 
-  "<br>displayName: " + uname+
-  "<br>your OS: " + xos;
-var xmlhttp = new XMLHttpRequest();
-        var theUrl = xurl+"?ctype=In&xos="+xos+"&user="+uid+"&name="+uname+"&lat="+position.coords.latitude+"&long="+position.coords.longitude;
-        xmlhttp.open('GET', theUrl);
-        xmlhttp.send();
-            xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var jsonResponse = JSON.parse(this.responseText);
         }
-        alert(jsonResponse.desc);
-        liff.closeWindow();
-      }});  
-}
 
 
-
-///////////////////////////////
-
-
-function getLocationOut() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPositionOut);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
-
-function showPositionOut(position) {
-
-     liff.getProfile().then(function(profile) {
-            var uid = profile.userId;
-            var uname = profile.displayName;
-        var xos = liff.getOS();
-  x.innerHTML = "Lat: " + position.coords.latitude + 
-  "<br>Long: " + position.coords.longitude+ 
-  "<br>userId: " + uid+ 
-  "<br>displayName: " + uname+
-  "<br>your OS: " + xos;
-var xmlhttp = new XMLHttpRequest();
-        var theUrl = xurl+"?ctype=Out&xos="+xos+"&user="+uid+"&name="+uname+"&lat="+position.coords.latitude+"&long="+position.coords.longitude;
-        xmlhttp.open('GET', theUrl);
-        xmlhttp.send();
-            xmlhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            var jsonResponse = JSON.parse(this.responseText);
+        function initializeLiff(myLiffId) {
+            liff
+                .init({
+                    liffId: myLiffId
+                })
+                .then(() => {
+                    checks();
+                })
+                .catch((err) => {
+                });
         }
-        alert(jsonResponse.desc);
-        liff.closeWindow();
-      }});  
-}
-</script>
+
+        var x = document.getElementById("demo");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPosition(position) {
+
+            liff.getProfile().then(function (profile) {
+                var uid = profile.userId;
+                var uname = profile.displayName;
+                var xos = liff.getOS();
+                x.innerHTML = "Lat: " + position.coords.latitude +
+                    "<br>Long: " + position.coords.longitude +
+                    "<br>userId: " + uid +
+                    "<br>displayName: " + uname +
+                    "<br>your OS: " + xos;
+                var xmlhttp = new XMLHttpRequest();
+                var theUrl = xurl + "?ctype=In&xos=" + xos + "&user=" + uid + "&name=" + uname + "&lat=" + position.coords.latitude + "&long=" + position.coords.longitude;
+                xmlhttp.open('GET', theUrl);
+                xmlhttp.send();
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var jsonResponse = JSON.parse(this.responseText);
+                    }
+                    alert(jsonResponse.desc);
+                    liff.closeWindow();
+                }
+            });
+        }
+
+
+
+        ///////////////////////////////
+
+
+        function getLocationOut() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPositionOut);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        function showPositionOut(position) {
+
+            liff.getProfile().then(function (profile) {
+                var uid = profile.userId;
+                var uname = profile.displayName;
+                var xos = liff.getOS();
+                x.innerHTML = "Lat: " + position.coords.latitude +
+                    "<br>Long: " + position.coords.longitude +
+                    "<br>userId: " + uid +
+                    "<br>displayName: " + uname +
+                    "<br>your OS: " + xos;
+                var xmlhttp = new XMLHttpRequest();
+                var theUrl = xurl + "?ctype=Out&xos=" + xos + "&user=" + uid + "&name=" + uname + "&lat=" + position.coords.latitude + "&long=" + position.coords.longitude;
+                xmlhttp.open('GET', theUrl);
+                xmlhttp.send();
+                xmlhttp.onreadystatechange = function () {
+                    if (this.readyState == 4 && this.status == 200) {
+                        var jsonResponse = JSON.parse(this.responseText);
+                    }
+                    alert(jsonResponse.desc);
+                    liff.closeWindow();
+                }
+            });
+        }
+
+        function clock() {// We create a new Date object and assign it to a variable called "time".\]
+
+            var hours = today.getHours(),
+
+                minutes = today.getMinutes(),
+
+
+                seconds = today.getSeconds();
+
+            var hh = today.getHours();
+            var mm = today.getMinutes();
+
+            document.querySelectorAll('.clock')[0].innerHTML = harold(hours) + ":" + harold(minutes) + ":" + harold(seconds);
+
+            function harold(standIn) {
+                if (standIn < 10) {
+                    standIn = '0' + standIn
+                }
+                return standIn;
+            }
+        }
+        setInterval(clock, 1000);
+    </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2.1/sdk.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-  </body>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>
