@@ -265,15 +265,9 @@
                         showCancelButton: false,
                         showConfirmButton: false,
                         allowOutsideClick: false
-                    }).then(
-                        function () { },
-                        function (dismiss) {
-                            if (dismiss === 'timer') {
-                                liff.closeWindow();
-
-                            }
-                        }
-                    )
+                    }).then(function() {
+                      liff.closeWindow();
+                    })
                 }
             });
         }
@@ -324,15 +318,9 @@
                         showCancelButton: false,
                         showConfirmButton: false,
                         allowOutsideClick: false
-                    }).then(
-                        function () { },
-                        function (dismiss) {
-                            if (dismiss === 'timer') {
-                                liff.closeWindow();
-
-                            }
-                        }
-                    )
+                    }).then(function() {
+                      liff.closeWindow();
+                    })
                 }
             });
         }
