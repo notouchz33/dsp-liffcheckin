@@ -272,15 +272,9 @@
                         didOpen: () => {
                             Swal.showLoading()
                         },
-                    }).then(
-                        function () { },
-                        function (dismiss) {
-                            if (dismiss === 'timer') {
-                                liff.closeWindow();
-
-                            }
-                        }
-                    )
+                    }).then(function () { 
+                        liff.closeWindow();
+                    })
                 }
             });
         }
@@ -331,15 +325,9 @@
                         didOpen: () => {
                             Swal.showLoading()
                         },
-                    }).then(
-                        function () { },
-                        function (dismiss) {
-                            if (dismiss === 'timer') {
-                                liff.closeWindow();
-
-                            }
-                        }
-                    )
+                    }).then(function () { 
+                        liff.closeWindow();
+                    })
                 }
             });
         }
