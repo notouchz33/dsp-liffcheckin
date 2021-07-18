@@ -175,10 +175,10 @@
         <h1>Check-In/Out Log</h1>
         <div class="clock pb-3 font-weight-bold"></div>
 
-        <div id="chkIn" class="pb-5"><button type="button" class="btn btn-success btn-lg w-75 font-weight-bold" style="padding: 2rem;font-size: 34px;"
-                onclick="getLocation()">Check-In</button></div>
-        <div id="chkOut" class="invisible"><button type="button" class="btn btn-danger btn-lg w-75 font-weight-bold" style="padding: 2rem;font-size: 34px;"
-                onclick="getLocationOut()">Check-Out</button></div>
+        <div id="chkIn" class="pb-5"><button type="button" class="btn btn-success btn-lg w-75 font-weight-bold"
+                style="padding: 2rem;font-size: 34px;" onclick="getLocation()">Check-In</button></div>
+        <div id="chkOut" class="invisible"><button type="button" class="btn btn-danger btn-lg w-75 font-weight-bold"
+                style="padding: 2rem;font-size: 34px;" onclick="getLocationOut()">Check-Out</button></div>
         <p id="demo"></p>
     </center>
 
@@ -272,8 +272,10 @@
                         didOpen: () => {
                             Swal.showLoading()
                         },
-                    }).then(function () { 
-                        liff.closeWindow();
+                    }).then((dismiss) => {
+                        if (dismiss === 'timer') {
+                            liff.closeWindow();
+                        }
                     })
                 }
             });
@@ -325,8 +327,10 @@
                         didOpen: () => {
                             Swal.showLoading()
                         },
-                    }).then(function () { 
-                        liff.closeWindow();
+                    }).then((dismiss) => {
+                        if (dismiss === 'timer') {
+                            liff.closeWindow();
+                        }
                     })
                 }
             });
