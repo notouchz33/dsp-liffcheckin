@@ -173,11 +173,11 @@
             </g>
         </svg>
         <h1>Check-In/Out Log</h1>
-        <div class="clock"></div>
+        <div class="clock pb-3 font-weight-bold"></div>
 
-        <div id="chkIn" class="pb-3"><button type="button" class="btn btn-success btn-lg btn-block"
+        <div id="chkIn" class="pb-5"><button type="button" class="btn btn-success btn-lg w-75 font-weight-bold" style="padding: 2rem;font-size: 34px;"
                 onclick="getLocation()">Check-In</button></div>
-        <div id="chkOut"><button type="button" class="btn btn-danger btn-lg btn-block"
+        <div id="chkOut" class="invisible"><button type="button" class="btn btn-danger btn-lg w-75 font-weight-bold" style="padding: 2rem;font-size: 34px;"
                 onclick="getLocationOut()">Check-Out</button></div>
         <p id="demo"></p>
     </center>
@@ -197,6 +197,10 @@
 
             var hh = today.getHours();
             var mm = today.getMinutes();
+
+            if (hh >= 10) {
+                document.getElementById("chkOut").classList.remove('invisible');
+            }
 
             // if (hh <= 13) {
             //     document.getElementById("chkIn").classList.remove('invisible');
@@ -281,10 +285,7 @@
             });
         }
 
-
-
         ///////////////////////////////
-
 
         function getLocationOut() {
             document.getElementById('loader').style.display = "block";
