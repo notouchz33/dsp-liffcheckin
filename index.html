@@ -211,8 +211,6 @@
             //     liff.closeWindow();
             // }
         }
-
-
         function initializeLiff(myLiffId) {
             liff
                 .init({
@@ -274,9 +272,11 @@
                         },
                     }).then((dismiss) => {
                         if (dismiss === 'timer') {
-                            liff.closeWindow();
                         }
                     })
+                    setTimeout(() => {
+                        liff.closeWindow();
+                    }, 2000);
                 }
             });
         }
@@ -329,9 +329,12 @@
                         },
                     }).then((dismiss) => {
                         if (dismiss === 'timer') {
-                            liff.closeWindow();
                         }
                     })
+
+                    setTimeout(() => {
+                        liff.closeWindow();
+                    }, 2000);
                 }
             });
         }
